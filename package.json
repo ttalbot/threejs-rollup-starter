@@ -1,0 +1,24 @@
+{
+  "name": "threejs-rollup-starter",
+  "version": "0.0.1",
+  "description": "An app starter template for threejs with rollup",
+  "author": "Thomas Talbot",
+  "license": "MIT",
+  "scripts": {
+    "build": "rollup -c",
+    "watch": "rollup -c -w",
+    "dev": "npm-run-all --parallel start watch",
+    "start": "serve public"
+  },
+  "devDependencies": {
+    "@rollup/plugin-html": "^0.2.3",
+    "@rollup/plugin-node-resolve": "^13.0.0",
+    "npm-run-all": "^4.1.5",
+    "rollup": "^2.52.2",
+    "rollup-plugin-styles": "^3.14.1",
+    "rollup-plugin-terser": "^7.0.2",
+    "sass": "^1.35.1",
+    "serve": "^12.0.0",
+    "three": "^0.129.0"
+  }
+}
