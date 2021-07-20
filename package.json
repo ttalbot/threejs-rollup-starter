@@ -7,8 +7,11 @@
   "scripts": {
     "build": "rollup -c",
     "watch": "rollup -c -w",
-    "dev": "npm-run-all --parallel start watch",
+    "dev": "run-p watch start",
     "start": "wds --app-index public/index.html --watch --open"
+  },
+  "dependencies": {
+    "three": "^0.129.0"
   },
   "devDependencies": {
     "@rollup/plugin-html": "^0.2.3",
@@ -19,6 +22,6 @@
     "rollup-plugin-styles": "^3.14.1",
     "rollup-plugin-terser": "^7.0.2",
     "sass": "^1.35.1",
-    "three": "^0.129.0"
+    "stats.js": "^0.17.0"
   }
 }
