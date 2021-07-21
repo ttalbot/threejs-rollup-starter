@@ -1,10 +1,15 @@
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
+import Stats from 'stats.js/src/Stats'
 
 import './styles.scss'
 
 var canvas = document.createElement('canvas')
 document.body.appendChild(canvas)
+
+var stats = new Stats()
+stats.showPanel(0) // 0: fps, 1: ms, 2: mb, 3+: custom
+document.body.appendChild(stats.dom)
 
 const scene = new THREE.Scene()
 
@@ -62,9 +67,11 @@ const clock = new THREE.Clock()
 
 const tick = () =>
 {
+  stats.begin()
   const elapsedTime = clock.getElapsedTime()
   controls.update()
   renderer.render(scene, camera)
+  stats.end()
   window.requestAnimationFrame(tick)
 }
 
