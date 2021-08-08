@@ -3,7 +3,11 @@
 </div>
 
 # threejs-rollup-starter
-An app starter template for threejs with rollup
+An app starter template for [Threejs](https://threejs.org/) bundled with [Rollup](https://rollupjs.org/) including:
+
+- [Sass](https://sass-lang.com/) support for styling
+- [dat.gui](https://github.com/dataarts/dat.gui) panel for debugging
+- [stats.js](https://github.com/mrdoob/stats.js/) panel for framerate visualization
 
 ## Get started
 
@@ -16,3 +20,8 @@ Start development
 ```sh
 yarn run dev
 ```
+
+## ToDo
+
+- [ ] Add glTF loader
+- [ ] Separate code into modules
