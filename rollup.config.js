@@ -9,8 +9,9 @@ export default {
   input: 'src/main.js',
   output: {
     dir: 'public',
-    format: 'iife',
+    format: 'es',
     assetFileNames: "[name]-[hash][extname]",
+    sourcemap: !production
   },
   plugins: [
     nodeResolve(),
