@@ -1,22 +1,24 @@
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import Stats from 'stats.js/src/Stats'
+import * as dat from 'dat.gui'
 
 import './styles.scss'
 
-var canvas = document.createElement('canvas')
+const canvas = document.createElement('canvas')
 document.body.appendChild(canvas)
 
-var stats = new Stats()
+const gui = new dat.GUI({width: 400})
+
+const stats = new Stats()
 stats.showPanel(0) // 0: fps, 1: ms, 2: mb, 3+: custom
 document.body.appendChild(stats.dom)
 
-const scene = new THREE.Scene()
+var configObject = {
+  cubeColor: 0xff0000
+}
 
-const geometry = new THREE.BoxGeometry()
-const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } )
-const cube = new THREE.Mesh( geometry, material )
-scene.add( cube )
+const scene = new THREE.Scene()
 
 const sizes = {
   width: window.innerWidth,
@@ -42,6 +44,9 @@ window.addEventListener('resize', () =>
 * Camera
 */
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100)
+gui.add(camera, 'fov').min(10).max(150).step(1).onChange(() => {
+  camera.updateProjectionMatrix();
+})
 camera.position.x = 1
 camera.position.y = 1
 camera.position.z = 2
@@ -59,6 +64,16 @@ const renderer = new THREE.WebGLRenderer({
 })
 renderer.setSize(sizes.width, sizes.height)
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+
+const geometry = new THREE.BoxGeometry()
+const material = new THREE.MeshBasicMaterial( { color: configObject.cubeColor } )
+const cube = new THREE.Mesh( geometry, material )
+gui.addColor(configObject, 'cubeColor').onChange(
+  (newColor) => {
+    material.color.set(newColor)
+  }
+)
+scene.add( cube )
 
 /**
 * Animate
